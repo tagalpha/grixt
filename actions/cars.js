@@ -3,7 +3,7 @@ module.exports = (api) => {
     const User = api.models.User;
 
     function create(req, res, next) {
-        let car = new Car(req.body);
+        var car = new Car(req.body);
         car.save()
             .then(res.prepare(201))
             .catch(res.prepare(500));
@@ -34,11 +34,11 @@ module.exports = (api) => {
     }
 
     function rent(req, res, next) {
-        let carId = req.params.id;
-        let userId = req.userId;
+        var carId = req.params.id;
+        var userId = req.userId;
 
-        let car = null;
-        let user = null;
+        var car = null;
+        var user = null;
 
         findCar()
             .then(ensureOne)
@@ -84,8 +84,8 @@ module.exports = (api) => {
     }
 
     function back(req, res, next) {
-        let car = null;
-        let user = null;
+        var car = null;
+        var user = null;
 
         findUser()
             .then(ensureCarRented)

@@ -2,7 +2,7 @@ module.exports = (api) => {
     const Garage = api.models.Garage;
 
     function create(req, res, next) {
-        let garage = new Garage(req.body);
+        var garage = new Garage(req.body);
         garage.save()
             .then(res.prepare(201))
             .catch(res.prepare(500));

@@ -11,10 +11,10 @@ module.exports = (api) => {
         .then(loadUser);
 
     function loadRoles() {
-        let batch = [];
+        var batch = [];
 
-        for (let role of roles) {
-            let promise = Role.findOne({
+        for (var role of roles) {
+            var promise = Role.findOne({
                 name: role.name
             })
                 .then(ensureOne)
@@ -55,7 +55,7 @@ module.exports = (api) => {
                 .then(createUser);
 
             function createUser(role) {
-                let user = new User(root);
+                var user = new User(root);
                 user.password = sha1(user.password);
                 user.role = role._id.toString();
                 return user.save();
@@ -63,5 +63,3 @@ module.exports = (api) => {
         }
     }
 };
-
-

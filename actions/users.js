@@ -5,7 +5,7 @@ module.exports = (api) => {
     const Role = api.models.Role;
 
     function create(req, res, next) {
-        let user = new User(req.body);
+        var user = new User(req.body);
         user.password = sha1(user.password);
 
         return ensureEmailDoesNotExist()
@@ -76,8 +76,8 @@ module.exports = (api) => {
 
 
     function assign(req, res, next) {
-        let target = null;
-        let role = null;
+        var target = null;
+        var role = null;
 
         findTarget()
             .then(findRole)

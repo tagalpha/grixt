@@ -2,7 +2,7 @@ module.exports = (api) => {
     const Location = api.models.Location;
 
     function create(req, res, next) {
-        let location = new Location(req.body);
+        var location = new Location(req.body);
         location.save()
             .then(res.prepare(201))
             .catch(res.prepare(500));
