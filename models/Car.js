@@ -5,7 +5,8 @@ module.exports = (api) => {
     var CarSchema = Schema({
         model: {
             type: Schema.Types.ObjectId,
-            ref: 'Model'
+            ref: 'Model',
+            required: true
         },
         garage: {
             type: Schema.Types.ObjectId,
