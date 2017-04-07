@@ -5,11 +5,11 @@ module.exports = (api) => {
     let UserSchema = Schema({
         lastname: {
             type: String,
-            required: true,
+            required: true
         },
         firstname: {
             type: String,
-            required: true,
+            required: true
         },
         email: {
             type: String,

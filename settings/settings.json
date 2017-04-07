@@ -9,7 +9,9 @@
     "acl": {
         "root": {
             "email": "root@root.com",
-            "password": "root"
+            "password": "root",
+            "lastname": "root",
+            "firstname": "root"
         },
         "roles": [
             {
