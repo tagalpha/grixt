@@ -25,7 +25,17 @@ module.exports = (api) => {
         }
 
         function save() {
-            return user.save();
+            return Role.findOne({
+                "name": "lambda"
+            })
+                .then(createUser)
+                .catch(res.error);
+
+            function createUser(role) {
+                console.log(role);
+                user.role = role._id.toString();
+                return user.save();
+            }
         }
 
         function respond() {
