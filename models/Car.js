@@ -7,6 +7,10 @@ module.exports = (api) => {
             type: Schema.Types.ObjectId,
             ref: 'Model'
         },
+        garage: {
+            type: Schema.Types.ObjectId,
+            ref: 'Garage'
+        },
         renters: [{
             type: Schema.Types.ObjectId,
             ref: 'User'
