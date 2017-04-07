@@ -1,6 +1,7 @@
 module.exports = (api) => {
     const Car = api.models.Car;
     const User = api.models.User;
+    const Location = api.models.Location;
 
     function create(req, res, next) {
         var car = new Car(req.body);
@@ -28,9 +29,29 @@ module.exports = (api) => {
     }
 
     function remove(req, res, next) {
-        Car.findByIdAndRemove(req.params.id)
+        Car.findById(req.params.id)
+            .then(ensureOne)
+            .then(searchLocation)
             .then(res.prepare(204))
             .catch(res.prepare(500));
+
+        function ensureOne(data){
+          return (data)? data:Promise.reject();
+        }
+
+        function searchLocation(car){
+          Location.find({
+            car : car
+          }).then(removeLocation);
+
+          function removeLocation(locations){
+            for (var location in locations){
+              Location.findByIdAndRemove(location);
+            }
+
+            return car.remove();
+          }
+        }
     }
 
     function rent(req, res, next) {
