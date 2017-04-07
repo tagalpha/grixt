@@ -2,7 +2,7 @@ module.exports = (api) => {
     const Model = api.models.Model;
 
     function create(req, res, next) {
-        let model = new Model(req.body);
+        var model = new Model(req.body);
         model.save()
             .then(res.prepare(201))
             .catch(res.prepare(500));

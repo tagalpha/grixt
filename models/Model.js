@@ -2,16 +2,18 @@ module.exports = (api) => {
     const mongoose = api.mongoose;
     const Schema = api.mongoose.Schema;
 
-    let ModelSchema = Schema({
+    var ModelSchema = Schema({
         name: {
             type: String,
-            default: 'unknown'
+            required: true
         },
         year: {
-            type: String
+            type: String,
+            required: true
         },
         seat: {
-            type: Number
+            type: Number,
+            required: true
         }
     });
 

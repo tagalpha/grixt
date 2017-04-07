@@ -2,7 +2,7 @@ module.exports = (api) => {
     const mongoose = api.mongoose;
     const Schema = api.mongoose.Schema;
 
-    let UserSchema = Schema({
+    var UserSchema = Schema({
         lastname: {
             type: String,
             required: true

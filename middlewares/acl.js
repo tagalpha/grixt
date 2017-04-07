@@ -1,7 +1,7 @@
 module.exports = {
     ensure: (requirement) => {
         return (req, res, next) => {
-            let userRole = req.role;
+            var userRole = req.role;
 
             if (typeof requirement == 'string') {
                 if (userRole.name == requirement) {
@@ -12,7 +12,7 @@ module.exports = {
             }
 
             if (requirement instanceof Array) {
-                let found = requirement.some((name) => {
+                var found = requirement.some((name) => {
                     return name == userRole.name
                 });
 

@@ -29,7 +29,7 @@ module.exports = (api) => {
                     .then(encryptToken);
 
                 function encryptToken(role) {
-                    let token = {
+                    var token = {
                         userId: user._id.toString(),
                         role: role.toJSON()
                     };

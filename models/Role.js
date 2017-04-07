@@ -2,7 +2,7 @@ module.exports = (api) => {
     const mongoose = api.mongoose;
     const Schema = mongoose.Schema;
 
-    let RoleSchema = new Schema({
+    var RoleSchema = new Schema({
         name: {
             type: String,
             required: true

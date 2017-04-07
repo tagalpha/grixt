@@ -15,7 +15,7 @@ const logFile = Date.now().toString() + '.log';
 }());
 
 function logger(req, res, next) {
-    let oldEnd = res.end;
+    var oldEnd = res.end;
     res.end = function (chunk) {
         log(req, res);
         oldEnd.apply(res, arguments);

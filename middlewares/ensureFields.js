@@ -7,7 +7,7 @@ module.exports = (fields) => {
         }
 
         const missings = [];
-        for (let field of fields) {
+        for (var field of fields) {
             if (!req.body[field]) {
                 missings.push(field);
             }
