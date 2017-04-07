@@ -3,22 +3,14 @@ module.exports = (api) => {
     const Schema = api.mongoose.Schema;
 
     var LocationSchema = Schema({
-      garageStart: {
-          type: Schema.Types.ObjectId,
-          ref: 'Garage'
-      },
-      garageEnd: {
-          type: Schema.Types.ObjectId,
-          ref: 'Garage'
-      },
       car: {
           type: Schema.Types.ObjectId,
           ref: 'Car'
       },
-      user: {
+      user: [{
           type: Schema.Types.ObjectId,
           ref: 'User'
-      },
+      }],
       dateStart: {
         type: Date,
         default: new Date()
@@ -28,7 +20,7 @@ module.exports = (api) => {
         default: new Date(),
         required: true,
       },
-      nbSiteRent: {
+      nbSeatRent: {
         type: Number,
         default: 1
       }

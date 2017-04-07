@@ -81,7 +81,8 @@ module.exports = (api) => {
 
         function create() {
             let garage = new Garage();
-            garage.nbPlace = 10;
+            garage.name = "ESGI";
+            garage.nbPlace = 3;
             garage.longitude = '4,2979';
             garage.latitude = '11,1691';
             return garage.save();
@@ -122,10 +123,18 @@ module.exports = (api) => {
                 .then(createCar);
 
             function createCar(model) {
+              Garage.findOne({
+                name: "ESGI"
+              })
+                .then(generate);
+
+              function generate(garage){
                 let car = new Car();
+                car.garage = garage._id.toString();
                 car.model = model._id.toString();
                 car.renters = [];
                 return car.save();
+              }
             }
         }
     }
