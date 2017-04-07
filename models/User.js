@@ -3,9 +3,13 @@ module.exports = (api) => {
     const Schema = api.mongoose.Schema;
 
     let UserSchema = Schema({
-        name: {
+        lastname: {
             type: String,
-            default: 'unknown'
+            required: true,
+        },
+        firstname: {
+            type: String,
+            required: true,
         },
         email: {
             type: String,
@@ -20,10 +24,6 @@ module.exports = (api) => {
             type: Schema.Types.ObjectId,
             ref: 'Role',
             select: false
-        },
-        rent: {
-            type: Schema.Types.ObjectId,
-            ref: 'Car'
         }
     });
 
