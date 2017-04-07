@@ -1,11 +1,59 @@
 module.exports = (api) => {
     const Location = api.models.Location;
+    const Garage = api.models.Garage;
+    const Car = api.models.Car;
 
     function create(req, res, next) {
-        var location = new Location(req.body);
-        location.save()
-            .then(res.prepare(201))
-            .catch(res.prepare(500));
+        return Location.findOne({
+            car: req.body.car
+        })
+            .then(ensureNone)
+            .then(checkSeat)
+            .then(checkPlaceEndDispo)
+            .then(locate)
+            .catch(res.prepare(404));
+
+        function ensureNone(data) {
+            if(!data) {
+                return new Location(req.body);
+            }
+
+            return data ;
+        }
+
+        function checkSeat(location) {
+            //TODO get all location
+            let car = Car.findById(location.car);
+            if(location.nbSeatRent === car.model.seat) {
+                return Promise.reject();
+            }
+
+            return location;
+        }
+
+        function checkPlaceEndDispo(location) {
+            return Garage.findById(req.body.garage)
+                .then(ensureOne)
+                .then(checkDispo)
+                .catch(res.prepare(404));
+
+            function ensureOne(data) {
+                return (data) ? data : Promise.reject()
+            }
+
+            function checkDispo(garage) {
+                let nbCars = Car.find({
+                    garage: req.body.garage
+                }).length();
+
+                return (garage.nbPlace - nbCars > 0) ? location : Promise.reject();
+            }
+        }
+
+        function locate(location) {
+            location.save();
+            res.prepare(204);
+        }
     }
 
     function list(req, res, next) {

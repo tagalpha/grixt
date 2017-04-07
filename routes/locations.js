@@ -9,7 +9,9 @@ module.exports = (api) => {
     router.post('/',
         api.middlewares.isAuthenticated,
         api.middlewares.bodyParser.json(),
-        api.actions.locations.create);
+        api.middlewares.ensureFields(['car', 'user', 'garageEnd', 'dateEnd']),
+        api.actions.locations.create
+    );
 
     return router;
 };
