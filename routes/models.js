@@ -12,5 +12,16 @@ module.exports = (api) => {
         api.middlewares.bodyParser.json(),
         api.actions.models.create);
 
+    router.put('/:id',
+        api.middlewares.isAuthenticated,
+        api.middlewares.acl.ensure("admin"),
+        api.middlewares.bodyParser.json(),
+        api.actions.models.update);
+
+    router.delete('/:id',
+        api.middlewares.isAuthenticated,
+        api.middlewares.acl.ensure("admin"),
+        api.actions.models.remove);
+
     return router;
 };
