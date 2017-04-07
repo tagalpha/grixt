@@ -2,7 +2,7 @@ module.exports = (api) => {
     const mongoose = api.mongoose;
     const Schema = api.mongoose.Schema;
 
-    let CarSchema = Schema({
+    let LocationSchema = Schema({
       garageStart: {
           type: Schema.Types.ObjectId,
           ref: 'Garage'
@@ -34,5 +34,5 @@ module.exports = (api) => {
       }
     });
 
-    return mongoose.model('Car', CarSchema);
+    return mongoose.model('Location', LocationSchema);
 };
