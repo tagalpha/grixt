@@ -18,10 +18,10 @@ module.exports = (api) => {
         .then(loadCar);
 
     function loadRoles() {
-        var batch = [];
+        let batch = [];
 
-        for (var role of roles) {
-            var promise = Role.findOne({
+        for (let role of roles) {
+            let promise = Role.findOne({
                 name: role.name
             })
                 .then(ensureOne)
@@ -62,7 +62,7 @@ module.exports = (api) => {
                 .then(createUser);
 
             function createUser(role) {
-                var user = new User(root);
+                let user = new User(root);
                 user.password = sha1(user.password);
                 user.role = role._id.toString();
                 return user.save();
